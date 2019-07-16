@@ -11,7 +11,19 @@
             formControlName="username"
 
             class="form-control">
-            <span *ngIf="!signupForm.get('userData.username').valid && signupForm.get('userData.username').touched " class="help-block">Please enter valid username</span>
+            <span 
+            *ngIf="!signupForm.get('userData.username').valid && signupForm.get('userData.username').touched " 
+            class="help-block">
+            
+              <span 
+                *ngIf="signupForm.get('userData.username').errors['nameIsForbiden']">
+                This username is invalid!
+              </span>
+              <span 
+                *ngIf="signupForm.get('userData.username').errors['required']">
+                This field is recquired!
+              </span>
+            </span>
         </div>
         <div class="form-group">
           <label for="email">email</label>
@@ -23,16 +35,7 @@
             <span 
               *ngIf="!signupForm.get('userData.email').valid && signupForm.get('userData.email').touched " 
               class="help-block">
-              <span 
-                class="help-block"
-                *ngIf="signupForm.get(userData.username).errors['nameIsForbiden']">
-                This username is invalid!
-              </span>
-              <span 
-                class="help-block"
-                *ngIf="signupForm.get(userData.username).errors['recquired']">
-                This field is recquired!
-              </span>
+              Please enter valid email!
               </span>
         </div>
       </div>
