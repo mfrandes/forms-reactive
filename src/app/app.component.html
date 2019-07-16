@@ -19,17 +19,28 @@
             type="text"
             id="email"
             formControlName="email"
-
             class="form-control">
-            <span *ngIf="!signupForm.get('userData.email').valid && signupForm.get('userData.email').touched " class="help-block">Please enter valid email</span>
+            <span 
+              *ngIf="!signupForm.get('userData.email').valid && signupForm.get('userData.email').touched " 
+              class="help-block">
+              <span 
+                class="help-block"
+                *ngIf="signupForm.get(userData.username).errors['nameIsForbiden']">
+                This username is invalid!
+              </span>
+              <span 
+                class="help-block"
+                *ngIf="signupForm.get(userData.username).errors['recquired']">
+                This field is recquired!
+              </span>
+              </span>
         </div>
       </div>
         <div class="radio" *ngFor="let gender of genders">
           <label>
             <input
               type="radio"
-            formControlName="gender"
-
+              formControlName="gender"
               [value]="gender">{{ gender }}
           </label>
         </div>
